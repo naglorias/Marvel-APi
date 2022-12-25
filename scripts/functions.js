@@ -15,8 +15,8 @@ const resultsContainer = document.querySelector('.results-flex');
 
 
 // API KEY and Hash KEY 
-const apiKey = "dcfffeb247a42df261b955a4f02e9152";//YOUR PUBLIC API KEY
-const hash = "32d5082388e97e74c0acbe5634b12127";// YOUR Hash 
+const apiKey = "*****************************";//YOUR PUBLIC API KEY
+const hash = "*******************************";// YOUR Hash 
 
 
 //Modal box close button
