@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Cinzel', serif;
+
+}
+
+.main-title {
+    max-width: 700px;
+    height: auto;
+    background-color: #D2042D;
+    margin: auto;
+    padding: 1rem;
+
+}
+
+.main-title h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 3em;
+}
+
+/* Search Inputs(single,Category) */
+.search-inputs {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem 1rem;
+}
+
+.search-inputs>div {
+    width: 500px;
+    display: flex;
+}
+
+.search-inputs input {
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding-left: 1rem;
+}
+
+.search-inputs input[type="text"]::placeholder {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.search-inputs button {
+    width: 200px;
+    height: 50px;
+    background-color: #d2042d;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+
+}
+
+.search-inputs select {
+    height: 50px;
+    outline: none;
+    background-color: #fff;
+    color: #D2042D;
+    border: 1px solid #D2042D;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Clear Buttons */
+.clear-btns {
+    width: 600px;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+
+}
+
+.clear-all,
+.clear {
+    width: 250px;
+    background-color: #D2042D;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+
+/* Results Container */
+.results-flex {
+    max-width: 990px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin: auto;
+    gap: .6rem;
+}
+
+.result-cell {
+    display: flex;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 1rem;
+
+
+}
+
+.result-details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    color: rgb(63, 57, 57);
+    text-align: left;
+    line-height: 50px;
+
+}
+
+.result-image {
+    width: 50%;
+    text-align: center;
+
+}
+
+.result-image img {
+    max-width: 200px;
+    height: 300px;
+}
+
+/* Error message modal box */
+.error-box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0, 0.8);
+
+}
+
+.error-modal {
+    width: 350px;
+    background-color: #fff;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 7rem;
+    border-radius: 5px;
+    box-shadow: 6px 30px 20px 3px rgba(0, 0, 0, 0.2);
+}
+
+.error-image {
+    width: 80px;
+}
+
+.error-message {
+    font-size: 1.2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.close-empty,
+.close-results {
+    padding: 0.7rem 4rem;
+    background-color: #d2042d;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 5px;
+    box-shadow: 0px 6px 18px -5px rgb(210, 4, 45, 1);
+    cursor: pointer;
+}
+
+.error-box {
+    display: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    body{
+        overflow-x: hidden;
+       
+    }
+    .main-title h1 {
+        font-size: 2.5em;
+    }
+    .search-inputs {
+       flex-direction: column;
+      
+        
+    }
+    .search-inputs > div{
+        padding: 1rem;
+    }
+    
+    .clear-btns {
+       flex-direction: column;
+       width: 400px;
+    }
+    .clear-all,
+.clear{
+width: 200px;
+margin: .88rem auto;
+}
+}
+
+@media screen and (max-width:600px) {
+    .main-title {
+        background: none;
+    }
+
+    .main-title h1 {
+        color: #D2042D;
+        font-size: 2em;
+    }
+    .result-cell{
+flex-direction: column;
+align-items: center;
+    }
+    .result-details{
+padding-left: 1.5rem;    }
+    .clear-all,
+    .clear{
+    width: 150px;
+    
+    }
+    
+}

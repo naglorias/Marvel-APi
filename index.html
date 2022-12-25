@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./imgs/marvel.png" type="image/x-icon">
+    <script src="script.js" defer></script>
+    <title>Marvel API</title>
+</head>
+
+<body>
+    <header>
+        <!-- API Logo -->
+        <div class="main-logo">
+            <span class="part-one"><img src="./imgs/logo1.png" alt=""></span>
+            <span class="part-two"><img src="./imgs/logo2.png" alt=""></span>
+        </div>
+    </header>
+    <main>
+        <!-- Category Cards consist of input ,search button and clear button to clear input field -->
+        <div class="container">
+            <div class="categories-grid">
+                <div class="cell search1">
+                    <div class="search-card">
+                        <h3>Characters</h3>
+                        <div class="search-row">
+                            <input type="text" id="characters-inpt" placeholder="Enter Character...">
+                            <div class="btns">
+                                <button class="search-chars">Search</button>
+                                <button class="clear-chars">Clear</button>
+                            </div>
+                        </div>
+                        <p>Enter Word That Character Starts With</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                    </div>
+                </div>
+                <div class="cell search2">
+                    <div class="search-card">
+                        <h3>Comics</h3>
+                        <div class="search-row">
+                            <input type="text" id="comics-inpt" placeholder="Enter Comic...">
+                            <div class="btns">
+                                <button class="search-comics">Search</button>
+                                <button class="clear-comics">Clear</button>
+                            </div>
+
+
+                        </div>
+                        <p>Enter Word That Comic Starts With</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                    </div>
+                </div>
+                <div class="cell search3">
+                    <div class="search-card">
+                        <h3>Series</h3>
+                        <div class="search-row">
+                            <input type="text" id="series-inpt" placeholder="Enter Series...">
+                            <div class="btns">
+                                <button class="search-series">Search</button>
+                                <button class="clear-series">Clear</button>
+                            </div>
+
+                        </div>
+                        <p>Enter Word That Series Starts With</p>
+
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                    </div>
+                </div>
+                <div class="cell search4">
+                    <div class="search-card">
+                        <h3>Events</h3>
+                        <div class="search-row">
+                            <input type="text" id="events-inpt" placeholder="Enter Event...">
+                            <div class="btns">
+                                <button class="search-events">Search</button>
+                                <button class="clear-events">Clear</button>
+                            </div>
+
+                        </div>
+                        <p>Enter Word That Event Starts With</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                    </div>
+                </div>
+                <div class="cell search5">
+                    <div class="search-card">
+                        <h3>Creators</h3>
+                        <div class="search-row">
+                            <input type="text" id="creators-inpt" placeholder="Enter Creator...">
+                            <div class="btns">
+                                <button class="search-creators">Search</button>
+                                <button class="clear-creators">Clear</button>
+                            </div>
+                        </div>
+                        <p>Enter Creator First Name</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--Box Model Error message-->
+    <div class="error-box empty-input">
+        <center>
+            <div class="error-modal">
+                <img src="./imgs/empty.svg" alt="errorImg" class="error-image">
+                <p class="error-message">Field is empty,please enter your keyword!</p>
+                <button class="close-empty">Ok</button>
+            </div>
+        </center>
+    </div>
+</body>
+
+</html>

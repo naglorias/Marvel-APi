@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/pages.css">
+    <link rel="shortcut icon" href="./imgs/marvel.png" type="image/x-icon">
+    <script src="./scripts/functions.js" defer></script>
+    <title>Marvel API-Series</title>
+</head>
+<body onload="requestSeriesList()">
+    <header>
+                <!-- Category title -->
+        <div class="main-title">
+            <h1>Series</h1>
+        </div>
+        <div class="search-inputs">
+                     <!-- Input for Id to display sinlge comic -->
+            <div class="single-output">
+                <input type="text" class="sngl-series-search-inpt" placeholder="Enter series id...">
+                <button id="sngl-series-search-btn" onclick="singleRequest('series')">Search</button>
+            </div>
+                        <!-- Input for Id to display by category -->
+            <div class="byId-output">
+                <input type="text" class="series-cat-search-inpt" placeholder="Enter series id..."><span><select
+                        id="byId">
+                        <option value="categories" selected>Categories</option>
+                        <!--<option value="chars">Characters</option>-->                        
+                        <option value="comics">Comics</option>
+                        <option value="creators">Creators</option>
+                        <option value="events">Events</option>
+                        <option value="stories">Stories</option>
+                    </select></span>
+                <button id="series-cat-search-btn" onclick="requestById('series')">Search</button>
+            </div>
+        </div>
+                         <!-- Clear Buttons to clear results flex container and input fields -->
+        <div class="clear-btns">
+            <button class="clear-all">Clear All</button>
+           <button class="clear">Clear</button>
+        </div>
+    </header>
+    <main>
+                <!-- Search results will be displayed  inside results flex contanier-->
+        <div class="results-flex">
+             <!--  <div class="result-cell">
+                 <div class="result-image">
+                     <img src="https://images.pexels.com/photos/6607387/pexels-photo-6607387.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="img">
+                 </div>
+                 <div class="result-details">
+                    <div class="result-name">
+                        <h2>Title</h2>
+                    </div>
+                    <div class="result-id">
+                        <h2>24984</h2>
+                    </div>
+                </div>
+             </div> --> 
+ 
+         </div>
+    </main>
+           <!--Box Model Error message-->
+        <div class="error-box empty-input">
+            <center>
+                <div class="error-modal">
+                    <img src="./imgs/empty.svg" alt="errorImg" class="error-image">
+                    <p class="error-message">Field is empty,please enter your keyword!</p>
+                    <button class="close-empty">Ok</button>
+                </div>
+            </center>
+        </div>
+</body>
+</html>
