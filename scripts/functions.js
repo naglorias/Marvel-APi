@@ -15,12 +15,14 @@ const resultsContainer = document.querySelector('.results-flex');
 
 
 // API KEY and Hash KEY 
-const apiKey = "*****************************";//YOUR PUBLIC API KEY
-const hash = "*******************************";// YOUR Hash 
+const apiKey = "***********************";//YOUR PUBLIC API KEY
+const hash = "************************";// YOUR Hash 
 
 
 //Modal box close button
 const closeBox = document.querySelector('.close-empty');
+
+
 
 //Retrieving Characters Function
 const requestCharactersList = () => {
@@ -31,7 +33,6 @@ const requestCharactersList = () => {
             if (response.data.total == 0) {
                 alert('No results found');
             } else if (response.data.total > 0) {
-                console.log(response);
                 response.data.results.forEach(result => {
                     resultsContainer.insertAdjacentHTML('beforeend', `
                 <div class="result-cell">
@@ -59,6 +60,7 @@ const requestCharactersList = () => {
 
 }
 
+
 //Retrieving Comics Function
 const requestComicsList = () => {
     let inputValue = localStorage.getItem('comicValue');
@@ -69,7 +71,6 @@ const requestComicsList = () => {
                 alert('No results found');
             }
             else if (response.data.total > 0) {
-                console.log(response);
                 response.data.results.forEach(result => {
                     resultsContainer.insertAdjacentHTML('beforeend', `
                 <div class="result-cell">
@@ -109,7 +110,6 @@ const requestSeriesList = () => {
                 alert('No results found');
             }
             else if (response.data.total > 0) {
-                console.log(response);
                 response.data.results.forEach(result => {
                     resultsContainer.insertAdjacentHTML('beforeend', `   
             <div class="result-cell">
@@ -172,7 +172,6 @@ const requestEventsList = () => {
     localStorage.clear();
 }
 
-
 //Retrieving Creators Function
 const requestCreatorsList = () => {
     let inputValue = localStorage.getItem('creatorValue');
@@ -183,7 +182,6 @@ const requestCreatorsList = () => {
                 alert('No results found');
             }
             else if (response.data.total > 0) {
-                console.log(response);
                 response.data.results.forEach(result => {
                     resultsContainer.insertAdjacentHTML('beforeend', `
          <div class="result-cell">
@@ -213,97 +211,38 @@ const requestCreatorsList = () => {
 /* ********************************Single Output Requests********************************* */
 /* **************************************************************************** */
 
-
 //Retrieving single character
 const singleRequest = (category) => {
     let idValue = singleInput.value;
     resultsContainer.innerHTML = '';
     if (idValue == "") {
         document.querySelector('.empty-input').style.display = "block";
-    }
-    else (fetch(`https://gateway.marvel.com:443/v1/public/${category}/${idValue}?&ts=1&apikey=${apiKey}&hash=${hash}`)
+    }else{
+        (fetch(`https://gateway.marvel.com:443/v1/public/${category}/${idValue}?&ts=1&apikey=${apiKey}&hash=${hash}`)
         .then(response => response.json())
         .then(response => {
-            console.log(response);
-            if (category == "characters") {
-                response.data.results.forEach(result => {
-                    resultsContainer.insertAdjacentHTML('beforeend', `
-                   <div class="result-cell">
+            response.data.results.forEach(result => {
+                resultsContainer.insertAdjacentHTML('beforeend',`
+                <div class="result-cell">
                     <div class="result-image">
-                    <img src="${result.thumbnail.path}.jpg" alt="img">
+                    <img src="${result.thumbnail.path ? `${result.thumbnail.path}.jpg`
+                    :'./imgs/no-image.png'}" alt="img">
                     </div>
                     <div class="result-details">
                        <div class="result-name">
-                       <h2>Name:${result.name}</h2>
+                       <h2>Name:${result.name? result.name
+                        : result.fullName ? result.fullName 
+                        :  result.title}</h2>
                        </div>
                        <div class="result-id">
                            <h2>Id:${result.id}</h2>
                        </div>
                    </div>
                 </div>
-                   `)
-                });
-            }
-            else if (category == "creators") {
-                response.data.results.forEach(result => {
-                    resultsContainer.insertAdjacentHTML('beforeend', `
-                   <div class="result-cell">
-                    <div class="result-image">
-                    <img src="${result.thumbnail.path}.jpg" alt="img">
-                    </div>
-                    <div class="result-details">
-                       <div class="result-name">
-                       <h2>Name:${result.fullName}</h2>
-                       </div>
-                       <div class="result-id">
-                           <h2>Id:${result.id}</h2>
-                       </div>
-                   </div>
-                </div>
-                   `)
-                });
-            }
-            else if (category == "stories") {
-                response.data.results.forEach(result => {
-                    resultsContainer.insertAdjacentHTML('beforeend', `
-                   <div class="result-cell">
-                   <div class="result-image">
-                           <img src="./imgs/no-image.png" alt="img">
-                           </div>
-                    <div class="result-details">
-                       <div class="result-name">
-                       <h2>Name:${result.title}</h2>
-                       </div>
-                       <div class="result-id">
-                           <h2>Id:${result.id}</h2>
-                       </div>
-                   </div>
-                </div>
-                   `)
-                });
-            }
-            else {
-                response.data.results.forEach(result => {
-                    resultsContainer.insertAdjacentHTML('beforeend', `
-                   <div class="result-cell">
-                   <div class="result-image">
-                   <img src="${result.thumbnail.path}.jpg" alt="img">
-                   </div>
-                    <div class="result-details">
-                       <div class="result-name">
-                       <h2>Name:${result.title}</h2>
-                       </div>
-                       <div class="result-id">
-                           <h2>Id:${result.id}</h2>
-                       </div>
-                   </div>
-                </div>
-                   `)
-                })
-            }
-
-        })
-        .catch(error => console.error(error)));
+                `)
+            })
+        }).catch(err => {console.log(err)})
+        )}
 }
 
 
@@ -312,107 +251,51 @@ const singleRequest = (category) => {
 /* ********************************Category By Id Request********************************* */
 /* **************************************************************************** */
 
-
 //Get Category ById
 const requestById = (category) => {
     let catInputValue = categoryInput.value;
     resultsContainer.innerHTML = "";
     if (catInputValue == "") {
         document.querySelector('.empty-input').style.display = "block";
-    }
-    else {
+    }else{
         if (categoryOptions.value == "categories") {
             alert('Please select a category');
-        } else {
+        }else{
             fetch(`https://gateway.marvel.com:443/v1/public/${category}/${catInputValue}/${categoryOptions.value}?&ts=1&apikey=${apiKey}&hash=${hash}`)
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response)
                     if (response.data.total == 0) {
                         alert('No data found');
-                    }
-                    if (categoryOptions.value == "characters") {
+                    }else{
                         response.data.results.forEach(result => {
-                            resultsContainer.insertAdjacentHTML('beforeend', `
-                           <div class="result-cell">
+                            resultsContainer.insertAdjacentHTML('beforeend',`
+                            
+                            <div class="result-cell">
                             <div class="result-image">
-                            <img src="${result.thumbnail.path}.jpg" alt="img">
+                            <img src="${result.thumbnail ? result.thumbnail.path + '.jpg'
+                            :'./imgs/no-image.png'}" alt="img">
                             </div>
-                            <div class="result-details">
-                               <div class="result-name">
-                               <h2>Name:${result.name}</h2>
-                               </div>
-                               <div class="result-id">
-                                   <h2>Id:${result.id}</h2>
-                               </div>
-                           </div>
-                        </div>
-                           `)
-                        });
-                    }
-                    else if (categoryOptions.value == "creators") {
-                        response.data.results.forEach(result => {
-                            resultsContainer.insertAdjacentHTML('beforeend', `
-                           <div class="result-cell">
-                            <div class="result-image">
-                            <img src="${result.thumbnail.path}.jpg" alt="img">
+                             <div class="result-details">
+                                <div class="result-name">
+                                <h2>Name:${result.name? result.name
+                                    : result.fullName ? result.fullName 
+                                    :  result.title}</h2>
+                                </div>
+                                <div class="result-id">
+                                    <h2>Id:${result.id}</h2>
+                                </div>
                             </div>
-                            <div class="result-details">
-                               <div class="result-name">
-                               <h2>Name:${result.fullName}</h2>
-                               </div>
-                               <div class="result-id">
-                                   <h2>Id:${result.id}</h2>
-                               </div>
-                           </div>
-                        </div>
-                           `)
-                        });
+                         </div>
+                            
+                            `)})
                     }
-                    else if (categoryOptions.value == "stories") {
-                        response.data.results.forEach(result => {
-                            resultsContainer.insertAdjacentHTML('beforeend', `
-                           <div class="result-cell">
-                           <div class="result-image">
-                           <img src="./imgs/no-image.png" alt="img">
-                           </div>
-                            <div class="result-details">
-                               <div class="result-name">
-                               <h2>Name:${result.title}</h2>
-                               </div>
-                               <div class="result-id">
-                                   <h2>Id:${result.id}</h2>
-                               </div>
-                           </div>
-                        </div>
-                           `)
-                        });
-                    }
-                    else {
-                        response.data.results.forEach(result => {
-                            resultsContainer.insertAdjacentHTML('beforeend', `
-                           <div class="result-cell">
-                           <div class="result-image">
-                           <img src="${result.thumbnail.path}.jpg" alt="img">
-                           </div>
-                            <div class="result-details">
-                               <div class="result-name">
-                               <h2>Name:${result.title}</h2>
-                               </div>
-                               <div class="result-id">
-                                   <h2>Id:${result.id}</h2>
-                               </div>
-                           </div>
-                        </div>
-                           `)
-                        })
-                    }
+                
                 })
-
-                .catch(error => console.log(error))
+                    .catch(error => {console.log(error)})
         }
     }
 };
+
 
 
 
